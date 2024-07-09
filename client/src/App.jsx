@@ -1,25 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 // import style from "../test.module.css";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import BuyLoad from "./pages/BuyLoad";
-import SendToMany from "./pages/SendToMany";
-import SendGift from "./pages/SendGift";
-import PayBills from "./pages/PayBills";
-import SendMoney from "./pages/SendMoney";
-import PayOutCenter from "./pages/PayOutCenter";
-import Reviews from "./testModule/Reviews";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Chat from "./pages/Chat";
+
+import { AuthContext } from "./pages/AuthContext";
+import { ChatContextProvider } from "./pages/ChatContext";
 
 export default function App() {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   return (
-    <Routes>
-      <Route path="/buyLoad" element={<BuyLoad />} />
-      <Route path="/sendGift" element={<SendGift />} />
-      <Route path="/sendToMany" element={<SendToMany />} />
-      <Route path="/payBills" element={<PayBills />} />
-      <Route path="/sendMoney" element={<SendMoney />} />
-      <Route path="/payOutCenter" element={<PayOutCenter />} />
-      <Route path="/reviews" element={<Reviews />} />
-    </Routes>
+    <ChatContextProvider user={user}>
+      <Routes>
+        <Route path="/register" element={user ? <Chat /> : <Register />} />
+        <Route path="/login" element={user ? <Chat /> : <Login />} />
+        <Route path="/chat" element={user ? <Chat /> : <Login />} />
+      </Routes>
+    </ChatContextProvider>
   );
 }

@@ -27,11 +27,24 @@ app.get("/", (req, res) => {
 const port = process.env.PORT || 5000;
 const uri = process.env.ATLAS_URI;
 
+let onlineUsers = [];
+
 io.on("connection", (socket) => {
   console.log(socket.id);
-  socket.on("disconnect", function () {
-    console.log("user disconnected");
-  });
+  // socket.on("disconnect", function () {
+  //   console.log("user disconnected");
+  // });
+  // socket.on("addNewUser", (userId) => {
+  //   console.log(userId);
+  //   !onlineUsers.some((user) => user.userId === userId) &&
+  //     onlineUsers.push({
+  //       userId,
+  //       socketId: socket.id,
+  //     });
+  //   console.log("onlineUsers", onlineUsers);
+  // });
+
+  socket.emit("hello", "world");
 });
 
 mongoose
