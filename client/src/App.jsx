@@ -10,15 +10,18 @@ import { AuthContext } from "./pages/AuthContext";
 import { ChatContextProvider } from "./pages/ChatContext";
 
 export default function App() {
-  const { user } = useContext(AuthContext);
-  console.log(user);
+  // const { user } = useContext(AuthContext);
+
   return (
-    <ChatContextProvider user={user}>
-      <Routes>
-        <Route path="/register" element={user ? <Chat /> : <Register />} />
-        <Route path="/login" element={user ? <Chat /> : <Login />} />
-        <Route path="/chat" element={user ? <Chat /> : <Login />} />
-      </Routes>
-    </ChatContextProvider>
+    // <ChatContextProvider user={user}>
+    <Routes>
+      {/* <Route path="/register" element={user ? <Chat /> : <Register />} />
+      <Route path="/login" element={user ? <Chat /> : <Login />} />
+      <Route path="/chat" element={user ? <Chat /> : <Login />} /> */}
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/chat" element={<Chat />} />
+    </Routes>
+    // </ChatContextProvider>
   );
 }
