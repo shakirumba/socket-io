@@ -8,7 +8,7 @@ const PotentialChats = () => {
 
   return (
     <>
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 border-4  w-[550px] p-4 overflow-auto">
         {potentialChats &&
           potentialChats.map((u, index) => {
             return (
